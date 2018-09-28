@@ -1,0 +1,67 @@
+<form [formGroup]="myForm">
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="fname">
+  </mat-form-field> &nbsp;
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="lname">
+  </mat-form-field>
+  <p>
+    <mat-form-field>
+      <input matInput type="email" placeholder="Email" formControlName="username">
+    </mat-form-field> &nbsp;
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password">
+    </mat-form-field>
+  </p>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="dob" placeholder="DOB(dd/mm/yyyy)" formControlName="dob">
+    <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+    <mat-datepicker #dob></mat-datepicker>
+  </mat-form-field>
+  <br>
+  
+  <div [formGroup]="myForm.controls['contact1']"><h5>Contact 1*</h5> &nbsp;
+    <mat-form-field>
+      <input matInput placeholder="Area Code" formControlName="area">
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <input matInput placeholder="Telephone" formControlName="tele">
+    </mat-form-field>
+  </div>
+
+  <div [formGroup]="myForm.controls['contact2']"><h5>Contact 2</h5> &nbsp;
+    <mat-form-field>
+      <input matInput placeholder="Area Code" formControlName="area">
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+      <input matInput placeholder="Telephone" formControlName="tele">
+    </mat-form-field>
+  </div>
+
+  <div [formGroup]="myForm.controls['address']">
+    <mat-form-field>
+      <input matInput placeholder="H.No." formControlName="hno">
+    </mat-form-field> &nbsp;
+    <mat-form-field>
+      <input matInput placeholder="Locality" formControlName="locality">
+    </mat-form-field> &nbsp;
+    <mat-form-field>
+        <mat-select placeholder="State" formControlName="state">
+          <mat-option *ngFor="let state of states" [value]="state.value">
+            {{state.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="ZIP" formControlName="pin">
+      </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="warn" (click)="saveinfo()" [disabled]="myForm.invalid">Sign Up</button>
+</form>
+
+{{myForm.value | json}}
+{{myForm.valid}}
